@@ -1,294 +1,360 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rafik | Portfolio</title>
+  <meta name="description" content="Rafik — AI Specialist, Laravel & Web Developer. Portfolio, certificates, and projects showcasing AI, web, and mobile development skills."/>
+  <meta name="keywords" content="Rafik, portfolio, AI, artificial intelligence, Laravel, web developer, software engineer, projects, certificates, Python, JavaScript, CSS, HTML"/>
+  <meta name="author" content="Rafik"/>
+
   <style>
-    /* ===== BASIC RESET ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* ======================= THEME ======================== */
+    :root {
+      --bg:#0b0b0b; --muted:#121212; --text:#e9e9e9; --sub:#bdbdbd;
+      --gold:#d4af37; --gold-2:#f1c94a; --stroke:#242424; --accent:#d4af37;
+      --link:#f1c94a; --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px; --speed:.5s;
     }
 
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      line-height: 1.6;
-      background: #0f172a;
-      color: #e2e8f0;
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 10% -10%, rgba(212,175,55,.06), transparent 60%),
+                  radial-gradient(900px 700px at 110% 10%, rgba(212,175,55,.05), transparent 65%),
+                  var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 4rem 1.5rem;
+    /* ======================= NAVBAR ======================== */
+    .nav {
+      position:sticky; top:0; z-index:1000;
+      backdrop-filter: blur(10px);
+      background: rgba(11,11,11,.7);
+      border-bottom:1px solid var(--stroke);
     }
-
-    h1, h2, h3, h4 {
-      font-weight: 700;
-      margin-bottom: 1rem;
+    .nav__inner {
+      max-width:1100px; margin:auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 20px;
     }
-
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; color: #38bdf8; }
-    h3 { font-size: 1.5rem; }
-    h4 { font-size: 1.2rem; }
-
-    p { margin-bottom: 1rem; }
-    .muted { color: #94a3b8; }
-
-    a {
-      text-decoration: none;
-      color: #38bdf8;
-      transition: color 0.3s ease;
+    .brand {
+      display:flex; align-items:center; gap:10px;
+      font-weight:700; letter-spacing:.5px
     }
-    a:hover { color: #0ea5e9; }
+    .brand .dot {
+      width:12px; height:12px; border-radius:50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      box-shadow:0 0 20px rgba(212,175,55,.6);
+    }
+    .nav a {
+      color:var(--text); text-decoration:none;
+      font-weight:600; opacity:.9;
+    }
+    .nav a:hover { color:var(--link) }
+    .menu { display:flex; gap:22px; align-items:center }
+    .cta {
+      padding:10px 14px; border-radius:999px;
+      border:1px solid var(--accent);
+      background: linear-gradient(135deg, rgba(212,175,55,.12), rgba(212,175,55,.02));
+      transition:transform .2s ease;
+    }
+    .cta:hover { transform:translateY(-2px) }
 
-    /* ===== NAV ===== */
-    nav {
-      position: sticky;
-      top: 0;
-      background: #1e293b;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
+    /* ======================= LAYOUT ======================== */
+    .container { max-width:1100px; margin:auto; padding:72px 20px }
+    h1,h2,h3,h4 { margin:0 0 10px }
+    h2 {
+      font-size:28px; text-align:center;
+      margin-bottom:28px; color:var(--gold-2);
+      letter-spacing:.3px; position:relative;
     }
-    nav .logo { font-weight: 800; color: #f1f5f9; }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
+    h2::after {
+      content:""; display:block; width:70px; height:2px;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin:10px auto 0; opacity:.8;
     }
-    nav ul li a {
-      font-weight: 600;
-      color: #e2e8f0;
-    }
+    p { color:var(--sub); line-height:1.7; margin:0 }
 
-    /* ===== BUTTONS ===== */
+    /* ======================= HERO ======================== */
+    .hero {
+      padding:110px 20px 70px;
+      display:grid; grid-template-columns:1.1fr .9fr;
+      gap:32px; align-items:center;
+    }
+    .hero__title {
+      font-size:40px; line-height:1.15; font-weight:800;
+      text-wrap:balance;
+    }
+    .hero__title .gold {
+      background:linear-gradient(135deg, var(--gold), var(--gold-2));
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent;
+      text-shadow:0 0 30px rgba(212,175,55,.18);
+    }
+    .hero__desc { margin-top:14px; font-size:16px }
+    .hero__tags {
+      margin-top:14px; display:flex; flex-wrap:wrap; gap:10px
+    }
+    .chip {
+      border:1px solid var(--stroke); background:#0e0e0e; color:#dcdcdc;
+      padding:8px 12px; border-radius:999px; font-size:13px
+    }
+    .hero__actions { margin-top:22px; display:flex; gap:12px; flex-wrap:wrap }
     .btn {
-      display: inline-block;
-      padding: 0.7rem 1.2rem;
-      margin-top: 1rem;
-      background: #38bdf8;
-      color: #0f172a;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: all 0.3s ease;
+      border:none; cursor:pointer; font-weight:700; letter-spacing:.3px;
+      border-radius:12px; padding:12px 16px;
+      color:#111;
+      background:linear-gradient(135deg, var(--gold), var(--gold-2));
+      box-shadow:var(--shadow);
+      transition:transform .15s ease;
     }
-    .btn:hover {
-      background: #0ea5e9;
-      transform: translateY(-2px);
+    .btn:hover { transform:translateY(-2px) }
+    .btn--ghost {
+      color:var(--text); background:transparent; border:1px solid var(--accent)
     }
+    .hero__photo { justify-self:center; position:relative; }
+    .avatar {
+      width:180px; height:180px; border-radius:50%; object-fit:cover;
+      border:2px solid rgba(212,175,55,.65);
+      box-shadow:0 10px 50px rgba(212,175,55,.25);
+      transform:translateZ(0);
+    }
+    .ring {
+      position:absolute; inset:-18px; border-radius:999px;
+      border:1px dashed rgba(212,175,55,.45);
+      animation:spin 18s linear infinite;
+    }
+    @keyframes spin { to{ transform:rotate(360deg) } }
 
-    /* ===== HERO ===== */
-    #hero {
-      text-align: center;
-      padding: 5rem 1rem;
+    /* ======================= SECTIONS ======================== */
+    .grid { display:grid; gap:18px; grid-template-columns:repeat(12,1fr); }
+    .card {
+      grid-column:span 12;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      border:1px solid var(--stroke); border-radius:var(--radius);
+      padding:20px; box-shadow:var(--shadow);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .3s ease;
     }
-    #hero h1 {
-      font-size: 3rem;
-      color: #f1f5f9;
-    }
-    #hero p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    /* ===== PROJECTS ===== */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .project {
-      background: #1e293b;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .project:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
-    }
+    .card:hover { transform:translateY(-6px); border-color:rgba(212,175,55,.35) }
     .badge {
-      display: inline-block;
-      padding: 0.2rem 0.6rem;
-      background: #facc15;
-      color: #0f172a;
-      font-size: 0.8rem;
-      border-radius: 6px;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
+      display:inline-block; font-size:12px; color:#111; font-weight:800;
+      padding:6px 10px; border-radius:999px;
+      background:linear-gradient(135deg, var(--gold), var(--gold-2));
+      margin-bottom:10px;
     }
-    .tagbar { margin-top: 0.7rem; }
+
+    /* Certificates */
+    .list { display:grid; gap:14px; }
+    .item {
+      display:grid; gap:6px; padding:14px;
+      border-radius:12px; background:#0f0f0f;
+      border:1px solid #1a1a1a;
+      transition:background .25s ease, transform .2s ease;
+    }
+    .item:hover { background:#121212; transform:translateY(-2px) }
+    .item .title { font-weight:800 }
+    .pill {
+      display:inline-block; padding:6px 10px; border-radius:999px;
+      font-size:12px; margin-left:8px;
+      border:1px solid rgba(212,175,55,.5); color:var(--link);
+    }
+
+    /* Projects */
+    .projects { display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
+    .project {
+      grid-column:span 6; background:#0f0f0f;
+      border:1px solid #1a1a1a; border-radius:16px;
+      padding:18px;
+      transition:transform .2s ease, border-color .3s ease;
+    }
+    .project:hover { transform:translateY(-4px); border-color:rgba(212,175,55,.35) }
+    .tagbar { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px }
     .tag {
-      display: inline-block;
-      background: #334155;
-      color: #e2e8f0;
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 6px;
-      margin-right: 0.4rem;
-      margin-bottom: 0.4rem;
+      font-size:12px; padding:6px 10px;
+      border:1px solid #2a2a2a; border-radius:999px;
+      color:#cfcfcf;
     }
 
-    /* ===== CERTIFICATES ===== */
-    .cert-list {
-      list-style: none;
-      margin-top: 1rem;
+    /* Contact */
+    .contact {
+      display:flex; gap:12px; flex-wrap:wrap;
+      justify-content:center; margin-top:10px;
     }
-    .cert-list li {
-      padding: 0.6rem 0;
-      border-bottom: 1px solid #334155;
+    .contact a {
+      text-decoration:none; color:#111; font-weight:800;
+      background:linear-gradient(135deg, var(--gold), var(--gold-2));
+      padding:12px 16px; border-radius:12px;
+      transition:transform .2s ease
     }
+    .contact a:hover { transform:translateY(-2px) }
 
-    /* ===== CONTACT ===== */
-    .socials {
-      list-style: none;
-      margin-top: 1rem;
-      text-align: center;
-    }
-    .socials li {
-      margin-bottom: 0.5rem;
-    }
-    .socials a {
-      font-weight: bold;
-      color: #38bdf8;
-    }
-    .socials a:hover { color: #0ea5e9; }
-
-    /* ===== FOOTER ===== */
+    /* Footer */
     footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #94a3b8;
-      border-top: 1px solid #334155;
+      padding:40px 20px; border-top:1px solid var(--stroke);
+      text-align:center; color:#9b9b9b
     }
 
-    /* ===== REVEAL ANIMATION ===== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0px);
+    /* Reveal Animation */
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity var(--speed) ease, transform var(--speed) ease }
+    .reveal.show { opacity:1; transform:none }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns:1fr; text-align:center }
+      .project { grid-column:span 12 }
     }
   </style>
 </head>
 <body>
-  <!-- ===== NAV ===== -->
-  <nav>
-    <div class="logo">Rafik</div>
-    <ul>
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#certs">Certificates</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <div class="brand">
+        <span class="dot"></span>
+        <a href="#home">Rafik</a>
+      </div>
+      <div class="menu">
+        <a href="#about">About</a>
+        <a href="#certs">Certificates</a>
+        <a href="#projects">Projects</a>
+        <a class="cta" href="#contact">Contact</a>
+      </div>
+    </div>
   </nav>
 
-  <!-- ===== HERO ===== -->
-  <section id="hero" class="reveal">
-    <h1>Hi, I’m Rafik 👋</h1>
-    <p>AI Specialist & Full-Stack Web Developer. Passionate about creating elegant solutions with Laravel, Python, and JavaScript.</p>
-    <a href="#projects" class="btn">See My Work</a>
+  <!-- Hero -->
+  <header id="home" class="container hero">
+    <div>
+      <h1 class="hero__title reveal">
+        Hi, I’m <span class="gold">Rafik</span> — <br/>AI Specialist, <span class="gold">Laravel</span> & Web Developer.
+      </h1>
+      <p class="hero__desc reveal">Computer Science graduate specialized in <b>Artificial Intelligence</b>. I build fast, elegant web apps and smart systems that solve real problems.</p>
+      <div class="hero__tags reveal">
+        <span class="chip">AI & ML</span>
+        <span class="chip">Laravel</span>
+        <span class="chip">Web Apps</span>
+        <span class="chip">Mobile Apps</span>
+      </div>
+      <div class="hero__actions reveal">
+        <a class="btn" href="#projects">View Projects</a>
+        <a class="btn btn--ghost" href="https://github.com/Rafikbou2" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <div class="hero__photo reveal">
+      <img class="avatar" src="rafik.jpg" alt="Rafik portrait"/>
+      <span class="ring"></span>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="container">
+    <h2 class="reveal">About Me</h2>
+    <div class="card reveal">
+      <span class="badge">Profile</span>
+      <p>I’m a software engineer focused on <b>Artificial Intelligence</b> and <b>full-stack web development</b> (Laravel, React, Node.js). Passionate about crafting clean interfaces, robust APIs, and data-driven features.</p>
+    </div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
-  <section id="about" class="container reveal">
-    <h2>About Me</h2>
-    <p>I’m a software engineer specialized in <b>Artificial Intelligence</b> and <b>full-stack web development</b>. I enjoy building scalable apps, smart systems, and data-driven solutions.</p>
-  </section>
-
-  <!-- ===== CERTIFICATES ===== -->
-  <section id="certs" class="container reveal">
-    <h2>Certificates</h2>
-    <ul class="cert-list">
-      <li>🎓 Master — Artificial Intelligence</li>
-      <li>🎓 Licence — Information Systems</li>
-      <li>📜 NVIDIA — Fundamentals of Deep Learning</li>
-      <li>📜 Académie Chiyar — HTML5, CSS</li>
-    </ul>
-  </section>
-
-  <!-- ===== PROJECTS ===== -->
-  <section id="projects" class="container reveal">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project">
-        <span class="badge">Featured</span>
-        <h3>Genetic Algorithm Decryptor</h3>
-        <p class="muted">A Python app using genetic algorithms to break substitution ciphers. GUI + charts with Tkinter & Matplotlib.</p>
-        <div class="tagbar">
-          <span class="tag">Python</span>
-          <span class="tag">Tkinter</span>
-          <span class="tag">Matplotlib</span>
+  <!-- Certificates -->
+  <section id="certs" class="container">
+    <h2 class="reveal">🎓 Certificates</h2>
+    <div class="grid split">
+      <div class="card reveal">
+        <span class="badge">📚 Academic</span>
+        <div class="list">
+          <div class="item">
+            <div class="title">Master — <span class="pill">Artificial Intelligence</span></div>
+            <p class="muted">Advanced studies in AI, data science, and intelligent systems.</p>
+          </div>
+          <div class="item">
+            <div class="title">Licence — <span class="pill">Information Systems</span></div>
+            <p class="muted">Foundations in databases, software engineering, and IS analysis.</p>
+          </div>
         </div>
       </div>
-      <div class="project">
-        <h3>🌐 Portfolio Website</h3>
-        <p class="muted">Responsive personal portfolio with smooth scroll & animations.</p>
-        <div class="tagbar">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">JavaScript</span>
-        </div>
-      </div>
-      <div class="project">
-        <h3>🏋🏼‍♀️ IMC Calculator</h3>
-        <p class="muted">Mobile app to calculate BMI with React Native.</p>
-        <div class="tagbar">
-          <span class="tag">React Native</span>
-          <span class="tag">Expo</span>
+      <div class="card reveal">
+        <span class="badge">📜 Professional</span>
+        <div class="list">
+          <div class="item" style="border-left:4px solid #76B900">
+            <div class="title">NVIDIA — Fundamentals of Deep Learning</div>
+            <p class="muted">Completed on 07 March 2024. Neural nets, DL workflows, GPU training.</p>
+          </div>
+          <div class="item" style="border-left:4px solid #FF5722">
+            <div class="title">Académie Chiyar — HTML5</div>
+            <p class="muted">Semantic HTML, structure, responsive foundations.</p>
+          </div>
+          <div class="item" style="border-left:4px solid #264de4">
+            <div class="title">Académie Chiyar — CSS</div>
+            <p class="muted">Layouts, animations, modern UI styling best practices.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="container reveal">
-    <h2>Contact</h2>
-    <p class="muted" style="text-align:center;">Feel free to reach out 👇</p>
-    <ul class="socials">
-      <li><a href="mailto:rafikbougaada@gmail.com">📧 Email</a></li>
-      <li><a href="https://www.linkedin.com/in/rafiq" target="_blank">💼 LinkedIn</a></li>
-      <li><a href="https://github.com/Rafikbou2" target="_blank">🐙 GitHub</a></li>
-    </ul>
+  <!-- Projects -->
+  <section id="projects" class="container">
+    <h2 class="reveal">🧩 Projects</h2>
+    <div class="projects">
+      <article class="project reveal" style="grid-column:span 12">
+        <span class="badge">Featured</span>
+        <h4>Genetic Algorithm Decryptor</h4>
+        <p class="muted">Desktop app that cracks substitution ciphers using a <b>Genetic Algorithm</b> with <b>n-gram</b> fitness. Includes GUI and plots.</p>
+        <div class="tagbar"><span class="tag">Python</span><span class="tag">Tkinter</span><span class="tag">Matplotlib</span></div>
+        <p><a href="https://github.com/Rafikbou2/genetic-decryption" target="_blank">View Code →</a></p>
+      </article>
+
+      <article class="project reveal">
+        <h4>🌐 Portfolio Website</h4>
+        <p class="muted">My responsive portfolio with animations and certificates.</p>
+        <div class="tagbar"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+        <p><a href="https://github.com/Rafikbou2/portfolio" target="_blank">View Code →</a></p>
+      </article>
+
+      <article class="project reveal">
+        <h4>🏋🏼‍♀️ IMC Calculator</h4>
+        <p class="muted">Mobile app to calculate BMI with React Native.</p>
+        <div class="tagbar"><span class="tag">React Native</span><span class="tag">Expo</span></div>
+        <p><a href="https://github.com/Rafikbou2/imc-calculator" target="_blank">View Code →</a></p>
+      </article>
+    </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    © <span id="y"></span> Rafik — All rights reserved.
-  </footer>
+  <!-- Contact -->
+  <section id="contact" class="container">
+    <h2 class="reveal">Contact</h2>
+    <p class="muted" style="text-align:center; margin-bottom:14px">Feel free to reach out for collaborations or opportunities.</p>
+    <div class="contact reveal">
+      <a href="mailto:rafikbougaada@gmail.com">📧 Email</a>
+      <a href="https://www.linkedin.com/in/rafiq" target="_blank">💼 LinkedIn</a>
+      <a href="https://github.com/Rafikbou2" target="_blank">🐙 GitHub</a>
+    </div>
+  </section>
 
-  <!-- ===== SCRIPT ===== -->
+  <!-- Footer -->
+  <footer>© <span id="y"></span> Rafik — All rights reserved.</footer>
+
   <script>
-    // Update year
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll(".reveal");
-    window.addEventListener("scroll", () => {
-      for (let el of reveals) {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          el.classList.add("active");
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+          io.unobserve(entry.target);
         }
-      }
-    });
+      });
+    }, { threshold:0.18 });
+    els.forEach(el=>io.observe(el));
   </script>
 </body>
 </html>
+
+
 
 
 
