@@ -1,162 +1,294 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafik | Portfolio</title>
-  <meta name="description" content="Rafik — AI Specialist, Laravel & Web Developer. Portfolio, certificates, and projects showcasing AI, web, and mobile development skills."/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background: #f8f9fa;
-      color: #333;
+    /* ===== BASIC RESET ===== */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
-    header {
-      background: #212529;
-      color: white;
-      padding: 50px 0;
-      text-align: center;
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      background: #0f172a;
+      color: #e2e8f0;
     }
-    header h1 {
-      font-size: 2.8rem;
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 4rem 1.5rem;
     }
-    header p {
-      font-size: 1.2rem;
-      color: #adb5bd;
+
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      margin-bottom: 1rem;
     }
-    section {
-      padding: 60px 0;
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; color: #38bdf8; }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.2rem; }
+
+    p { margin-bottom: 1rem; }
+    .muted { color: #94a3b8; }
+
+    a {
+      text-decoration: none;
+      color: #38bdf8;
+      transition: color 0.3s ease;
     }
-    .section-title {
-      font-size: 2rem;
+    a:hover { color: #0ea5e9; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      background: #1e293b;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+    nav .logo { font-weight: 800; color: #f1f5f9; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul li a {
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.2rem;
+      margin-top: 1rem;
+      background: #38bdf8;
+      color: #0f172a;
+      border-radius: 8px;
       font-weight: bold;
-      margin-bottom: 30px;
-      text-align: center;
+      transition: all 0.3s ease;
     }
-    .project-card, .certificate-card {
-      border: none;
+    .btn:hover {
+      background: #0ea5e9;
+      transform: translateY(-2px);
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      text-align: center;
+      padding: 5rem 1rem;
+    }
+    #hero h1 {
+      font-size: 3rem;
+      color: #f1f5f9;
+    }
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== PROJECTS ===== */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .project {
+      background: #1e293b;
+      padding: 1.5rem;
       border-radius: 12px;
-      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .project-card:hover, .certificate-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    .project:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
     }
-    footer {
-      background: #212529;
-      color: white;
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      background: #facc15;
+      color: #0f172a;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .tagbar { margin-top: 0.7rem; }
+    .tag {
+      display: inline-block;
+      background: #334155;
+      color: #e2e8f0;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ===== CERTIFICATES ===== */
+    .cert-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+    .cert-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #334155;
+    }
+
+    /* ===== CONTACT ===== */
+    .socials {
+      list-style: none;
+      margin-top: 1rem;
       text-align: center;
-      padding: 20px 0;
+    }
+    .socials li {
+      margin-bottom: 0.5rem;
+    }
+    .socials a {
+      font-weight: bold;
+      color: #38bdf8;
+    }
+    .socials a:hover { color: #0ea5e9; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      border-top: 1px solid #334155;
+    }
+
+    /* ===== REVEAL ANIMATION ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0px);
     }
   </style>
 </head>
 <body>
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="logo">Rafik</div>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#certs">Certificates</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-  <!-- ===== HEADER ===== -->
-  <header>
-    <h1>👋 Hi, I'm Rafik</h1>
-    <p>AI Specialist | Laravel & Web Developer | Mobile Enthusiast</p>
-    <div class="mt-3">
-      <a href="https://github.com/Rafikbou2" class="btn btn-light btn-sm" target="_blank">
-        <i class="fab fa-github"></i> GitHub
-      </a>
-      <a href="#contact" class="btn btn-primary btn-sm">
-        <i class="fas fa-envelope"></i> Contact Me
-      </a>
-    </div>
-  </header>
-
-  <!-- ===== ABOUT ME ===== -->
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title">👨‍💻 About Me</h2>
-      <p class="text-center">
-        I’m Rafik, a passionate developer specialized in <b>Artificial Intelligence</b>, 
-        <b>Laravel Web Applications</b>, and <b>Mobile Development</b>.  
-        I enjoy building smart applications that solve real-world problems and sharing my projects with the community.
-      </p>
-    </div>
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="reveal">
+    <h1>Hi, I’m Rafik 👋</h1>
+    <p>AI Specialist & Full-Stack Web Developer. Passionate about creating elegant solutions with Laravel, Python, and JavaScript.</p>
+    <a href="#projects" class="btn">See My Work</a>
   </section>
 
-  <!-- ===== FEATURED PROJECTS ===== -->
-  <section id="projects">
-    <div class="container">
-      <h2 class="section-title">📂 Featured Projects</h2>
-      <div class="row g-4">
-
-        <div class="col-md-4">
-          <div class="card project-card p-3">
-            <h5>🔐 <a href="https://github.com/Rafikbou2/genetic-decryption" target="_blank">Genetic Decryption</a></h5>
-            <p>Decrypt substitution ciphers with <b>Genetic Algorithms</b> (Python GUI).</p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card project-card p-3">
-            <h5>🌐 <a href="https://github.com/Rafikbou2/portfolio" target="_blank">Portfolio Website</a></h5>
-            <p>My personal responsive portfolio with animations & certificates.</p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card project-card p-3">
-            <h5>🏋🏼‍♀️ <a href="https://github.com/Rafikbou2/imc-calculator" target="_blank">IMC Calculator</a></h5>
-            <p>Simple application to calculate Body Mass Index (BMI).</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="container reveal">
+    <h2>About Me</h2>
+    <p>I’m a software engineer specialized in <b>Artificial Intelligence</b> and <b>full-stack web development</b>. I enjoy building scalable apps, smart systems, and data-driven solutions.</p>
   </section>
 
   <!-- ===== CERTIFICATES ===== -->
-  <section id="certificates">
-    <div class="container">
-      <h2 class="section-title">📜 Certificates</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card certificate-card p-3">
-            <h5>✅ Python for Data Science</h5>
-            <p>Completed a professional course in Python for Data Science.</p>
-          </div>
+  <section id="certs" class="container reveal">
+    <h2>Certificates</h2>
+    <ul class="cert-list">
+      <li>🎓 Master — Artificial Intelligence</li>
+      <li>🎓 Licence — Information Systems</li>
+      <li>📜 NVIDIA — Fundamentals of Deep Learning</li>
+      <li>📜 Académie Chiyar — HTML5, CSS</li>
+    </ul>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="container reveal">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <span class="badge">Featured</span>
+        <h3>Genetic Algorithm Decryptor</h3>
+        <p class="muted">A Python app using genetic algorithms to break substitution ciphers. GUI + charts with Tkinter & Matplotlib.</p>
+        <div class="tagbar">
+          <span class="tag">Python</span>
+          <span class="tag">Tkinter</span>
+          <span class="tag">Matplotlib</span>
         </div>
-        <div class="col-md-4">
-          <div class="card certificate-card p-3">
-            <h5>✅ Laravel Web Development</h5>
-            <p>Certified in Laravel framework and modern web application development.</p>
-          </div>
+      </div>
+      <div class="project">
+        <h3>🌐 Portfolio Website</h3>
+        <p class="muted">Responsive personal portfolio with smooth scroll & animations.</p>
+        <div class="tagbar">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
         </div>
-        <div class="col-md-4">
-          <div class="card certificate-card p-3">
-            <h5>✅ Artificial Intelligence</h5>
-            <p>Specialized certificate in AI, ML & Neural Networks.</p>
-          </div>
+      </div>
+      <div class="project">
+        <h3>🏋🏼‍♀️ IMC Calculator</h3>
+        <p class="muted">Mobile app to calculate BMI with React Native.</p>
+        <div class="tagbar">
+          <span class="tag">React Native</span>
+          <span class="tag">Expo</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== CONTACT ===== -->
-  <section id="contact">
-    <div class="container text-center">
-      <h2 class="section-title">📩 Contact Me</h2>
-      <p>Email: <a href="mailto:rafik@example.com">rafik@example.com</a></p>
-      <p>GitHub: <a href="https://github.com/Rafikbou2" target="_blank">github.com/Rafikbou2</a></p>
-    </div>
+  <section id="contact" class="container reveal">
+    <h2>Contact</h2>
+    <p class="muted" style="text-align:center;">Feel free to reach out 👇</p>
+    <ul class="socials">
+      <li><a href="mailto:rafikbougaada@gmail.com">📧 Email</a></li>
+      <li><a href="https://www.linkedin.com/in/rafiq" target="_blank">💼 LinkedIn</a></li>
+      <li><a href="https://github.com/Rafikbou2" target="_blank">🐙 GitHub</a></li>
+    </ul>
   </section>
 
   <!-- ===== FOOTER ===== -->
   <footer>
-    <p>© 2025 Rafik | Portfolio</p>
+    © <span id="y"></span> Rafik — All rights reserved.
   </footer>
 
+  <!-- ===== SCRIPT ===== -->
+  <script>
+    // Update year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll(".reveal");
+    window.addEventListener("scroll", () => {
+      for (let el of reveals) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add("active");
+        }
+      }
+    });
+  </script>
 </body>
 </html>
-
 
 
 
